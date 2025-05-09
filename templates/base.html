@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sistema Nacional de Doação de Órgãos e Tecidos{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+    {% block head %}{% endblock %} {# Permite adicionar conteúdo extra no head #}
+</head>
+<body class="bg-gradient-to-r from-teal-100 to-lime-100 text-gray-800">
+    <header class="bg-green-500 shadow-md py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-semibold text-white"><a href="{% url 'index' %}">Sistema Nacional de Doação de Órgãos e Tecidos</a></h1>
+            <a href="{% url 'acesso_restrito' %}" class="text-white text-sm hover:text-green-200 transition-colors duration-300">Acesso Restrito</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto py-8">
+        {% block content %}{% endblock %} {# Conteúdo principal de cada página #}
+    </main>
+
+    <footer class="bg-gray-800 text-white py-4 mt-12">
+        <div class="container mx-auto text-center text-sm">
+            © 2025 Sistema Nacional de Doação de Órgãos e Tecidos. Todos os direitos reservados.
+        </div>
+    </footer>
+    {% block scripts %}{% endblock %} {# Permite adicionar scripts específicos de cada página #}
+</body>
+</html>

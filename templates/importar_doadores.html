@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Doadores{% endblock %}
+
+{% block content %}
+        <section class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-2xl font-semibold text-green-600 mb-4">Importar Doadores</h2>
+            <p class="text-gray-700 mb-4">
+                Selecione o arquivo JSON contendo os dados dos doadores para importar para o sistema.
+            </p>
+            <form method="post" enctype="multipart/form-data" class="space-y-4">
+                {% csrf_token %}
+                <div>
+                    <label for="json_file" class="block text-gray-700 text-sm font-bold mb-2">Selecionar Arquivo JSON:</label>
+                    {{ form.json_file }}
+                    <p id="file-error" class="text-red-500 text-xs italic" style="display: none;">Por favor, selecione um arquivo JSON válido.</p>
+                    {% if form.json_file.errors %}
+                        <ul class="list-none text-red-500 text-xs mt-1">
+                            {% for error in form.json_file.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Importar Doadores
+                </button>
+                <a href="{% url 'index' %}" class="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300">Voltar para a Tela Inicial</a>
+            </form>
+        </section>
+{% endblock %}
+
+
+<script>
+    const fileInput = document.getElementById('id_json_file'); // Corrigido o ID para 'id_json_file'
+    const fileError = document.getElementById('file-error');
+    const form = document.querySelector('form');
+
+    fileInput.addEventListener('change', function() {
+        if (this.files[0].type !== 'application/json') {
+            fileError.style.display = 'block';
+            this.value = '';
+        } else {
+            fileError.style.display = 'none';
+        }
+    });
+
+    form.addEventListener('submit', function(event) {
+        if (!fileInput.value) {
+            event.preventDefault();
+            fileError.textContent = 'Por favor, selecione um arquivo.';
+            fileError.style.display = 'block';
+        }
+    });
+</script>

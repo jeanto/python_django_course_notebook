@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Nacional de Doação de Órgãos e Tecidos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-r from-teal-100 to-lime-100 text-gray-800">
+    <header class="bg-green-500 shadow-md py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-semibold text-white">Sistema Nacional de Doação de Órgãos e Tecidos</h1>
+            <a href="{% url 'acesso_restrito' %}" class="text-white text-sm hover:text-green-200 transition-colors duration-300">Acesso Restrito</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto py-8">
+        <section class="text-center mb-12">
+            <h2 class="text-3xl font-semibold text-green-600 mb-4">Seja um Herói. Doe Vida.</h2>
+            <p class="text-lg text-gray-700">
+                Nesta aplicação é possível realizar o cadastro de doadores, receptores e acompanhar o processo de doação.
+            </p>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between">
+                <h3 class="text-2xl font-semibold text-teal-500 mb-4">Doador</h3>
+                <p class="text-gray-700 mb-6">
+                    Um doador é uma pessoa que, por vontade própria ou por autorização familiar, doa órgãos e/ou tecidos para
+                    transplante.
+                </p>
+                <div class="space-y-2">
+                    <a href="{% url 'importar_doadores' %}" class="block bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300 text-center">Importar Doadores</a>
+                    <a href="{% url 'cadastrar_doador' %}" class="block bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300 text-center">Cadastrar Doador</a>
+                    <a href="{% url 'atualizar_dados_doador' %}" class="block bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300 text-center">Atualizar Dados</a>
+                    <a href="{% url 'intencao_doador' %}" class="block bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300 text-center">Intenção do Doador</a>
+                    <a href="{% url 'listar_doadores' %}" class="block bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300 text-center">Listar Doadores</a>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between">
+                <h3 class="text-2xl font-semibold text-lime-500 mb-4">Receptor</h3>
+                <p class="text-gray-700 mb-6">
+                    Um receptor é uma pessoa que necessita de um transplante de órgão ou tecido para tratar uma condição de
+                    saúde.
+                </p>
+                <div class="space-y-2">
+                    <a href="{% url 'cadastrar_receptor' %}" class="block bg-lime-500 hover:bg-lime-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300 text-center">Cadastrar Receptor</a>
+                    <a href="{% url 'atualizar_dados_receptor' %}" class="block bg-lime-500 hover:bg-lime-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300 text-center">Atualizar Dados</a>
+                    <a href="{% url 'visualizar_situacao_receptor' %}" class="block bg-lime-500 hover:bg-lime-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300 text-center">Visualizar Situação</a>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between">
+                <h3 class="text-2xl font-semibold text-green-500 mb-4">Doação</h3>
+                <p class="text-gray-700 mb-6">
+                    Doação é o ato de doar órgãos e/ou tecidos para outra pessoa que necessita de transplante.
+                </p>
+                <div class="space-y-2">
+                    <a href="{% url 'registrar_doacao' %}" class="block bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300 text-center">Registrar Doação</a>
+                    <a href="{% url 'visualizar_historico_doacoes' %}" class="block bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300 text-center">Visualizar Histórico</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-4 mt-12">
+        <div class="container mx-auto text-center text-sm">
+            © 2025 Sistema Nacional de Doação de Órgãos e Tecidos. Todos os direitos reservados.
+        </div>
+    </footer>
+</body>
+</html>

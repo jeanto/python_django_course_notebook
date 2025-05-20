@@ -1,370 +1,615 @@
-
 {% extends 'base.html' %}
 
-{% block title %}Lista de Doadores{% endblock %}
+{% block title %}Cadastro de Doador{% endblock %}
 
-{% block content %}        
-        <section class="bg-white rounded-lg shadow-lg p-6">
-            <h1 class="text-2xl font-semibold text-green-600 mb-6 text-center">Cadastro de Doador</h1>
-            <form id="cadastroForm" class="space-y-4">
-                <div>
-                    <label for="nome" class="block text-gray-700 text-sm font-bold mb-2">Nome:</label>
-                    <input type="text" id="nome" name="nome" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <div id="nome-error" class="error-message"></div>
-                </div>
-                <div>
-                    <label for="idade" class="block text-gray-700 text-sm font-bold mb-2">Idade:</label>
-                    <input type="number" id="idade" name="idade" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <div id="idade-error" class="error-message"></div>
-                </div>
-                <div>
-                    <label for="sexo" class="block text-gray-700 text-sm font-bold mb-2">Sexo:</label>
-                    <select id="sexo" name="sexo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        <option value="">Selecione</option>
-                        <option value="M">Masculino</option>
-                        <option value="F">Feminino</option>
-                    </select>
-                    <div id="sexo-error" class="error-message"></div>
-                </div>
-                <div>
-                    <label for="data_nascimento" class="block text-gray-700 text-sm font-bold mb-2">Data de Nascimento:</label>
-                    <input type="text" id="data_nascimento" name="data_nascimento" placeholder="DD/MM/AAAA" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <div id="data_nascimento-error" class="error-message"></div>
-                </div>
-                <div>
-                    <label for="cidade_natal" class="block text-gray-700 text-sm font-bold mb-2">Cidade Natal:</label>
-                    <input type="text" id="cidade_natal" name="cidade_natal" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <div id="cidade_natal-error" class="error-message"></div>
-                </div>
-                <div>
-                    <label for="estado_natal" class="block text-gray-700 text-sm font-bold mb-2">Estado Natal:</label>
-                    <input type="text" id="estado_natal" name="estado_natal" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <div id="estado_natal-error" class="error-message"></div>
-                </div>
-                <div>
-                    <label for="cpf" class="block text-gray-700 text-sm font-bold mb-2">CPF:</label>
-                    <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <div id="cpf-error" class="error-message"></div>
-                </div>
-                <div>
-                    <label for="profissao" class="block text-gray-700 text-sm font-bold mb-2">Profissão:</label>
-                    <input type="text" id="profissao" name="profissao" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <div id="profissao-error" class="error-message"></div>
-                </div>
-                <div>
-                    <label for="cidade_residencia" class="block text-gray-700 text-sm font-bold mb-2">Cidade de Residência:</label>
-                    <input type="text" id="cidade_residencia" name="cidade_residencia" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <div id="cidade_residencia-error" class="error-message"></div>
-                </div>
-                <div>
-                    <label for="estado_residencia" class="block text-gray-700 text-sm font-bold mb-2">Estado de Residência:</label>
-                    <input type="text" id="estado_residencia" name="estado_residencia" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <div id="estado_residencia-error" class="error-message"></div>
-                </div>
-                <div>
-                    <label for="estado_civil" class="block text-gray-700 text-sm font-bold mb-2">Estado Civil:</label>
-                    <input type="text" id="estado_civil" name="estado_civil" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <div id="estado_civil-error" class="error-message"></div>
-                </div>
-                <div>
-                    <label for="contato_emergencia" class="block text-gray-700 text-sm font-bold mb-2">Contato de Emergência:</label>
-                    <input type="text" id="contato_emergencia" name="contato_emergencia" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <div id="contato_emergencia-error" class="error-message"></div>
-                </div>
-                <div>
-                    <label for="tipo_sanguineo" class="block text-gray-700 text-sm font-bold mb-2">Tipo Sanguíneo:</label>
-                    <select id="tipo_sanguineo" name="tipo_sanguineo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        <option value="">Selecione</option>
-                        <option value="A+">A+</option>
-                        <option value="A-">A-</option>
-                        <option value="B+">B+</option>
-                        <option value="B-">B-</option>
-                        <option value="AB+">AB+</option>
-                        <option value="AB-">AB-</option>
-                        <option value="O+">O+</option>
-                        <option value="O-">O-</option>
-                    </select>
-                    <div id="tipo_sanguineo-error" class="error-message"></div>
-                </div>
-                <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Cadastrar Doador</button>
-                <a href="{% url 'index' %}" class="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300">Voltar para a Tela Inicial</a>
-            </form>
-        </section>
-
-
-<script>
-    const form = document.getElementById('cadastroForm');
-    const nomeInput = document.getElementById('nome');
-    const idadeInput = document.getElementById('idade');
-    const sexoInput = document.getElementById('sexo');
-    const dataNascimentoInput = document.getElementById('data_nascimento');
-    const cidadeNatalInput = document.getElementById('cidade_natal');
-    const estadoNatalInput = document.getElementById('estado_natal');
-    const cpfInput = document.getElementById('cpf');
-    const profissaoInput = document.getElementById('profissao');
-    const cidadeResidenciaInput = document.getElementById('cidade_residencia');
-    const estadoResidenciaInput = document.getElementById('estado_residencia');
-    const estadoCivilInput = document.getElementById('estado_civil');
-    const contatoEmergenciaInput = document.getElementById('contato_emergencia');
-    const tipoSanguineoInput = document.getElementById('tipo_sanguineo');
-
-
-    const nomeError = document.getElementById('nome-error');
-    const idadeError = document.getElementById('idade-error');
-    const sexoError = document.getElementById('sexo-error');
-    const dataNascimentoError = document.getElementById('data_nascimento-error');
-    const cidadeNatalError = document.getElementById('cidade_natal-error');
-    const estadoNatalError = document.getElementById('estado_natal-error');
-    const cpfError = document.getElementById('cpf-error');
-    const profissaoError = document.getElementById('profissao-error');
-    const cidadeResidenciaError = document.getElementById('cidade_residencia-error');
-    const estadoResidenciaError = document.getElementById('estado_residencia-error');
-    const estadoCivilError = document.getElementById('estado_civil-error');
-    const contatoEmergenciaError = document.getElementById('contato_emergencia-error');
-    const tipoSanguineoError = document.getElementById('tipo_sanguineo-error');
-
-    function validarNome() {
-        const nome = nomeInput.value.trim();
-        if (!nome) {
-            nomeError.textContent = 'Nome é obrigatório.';
-            return false;
+{% block head %}
+    <style>
+        .error-message {
+            color: red;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
         }
-        nomeError.textContent = '';
-        return true;
-    }
+        .errorlist {
+            color: red;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            list-style: none;
+            padding-left: 0;
+        }
+    </style>
+{% endblock %}
 
-    function validarIdade() {
-        const idade = idadeInput.value.trim();
-        if (!idade) {
-            idadeError.textContent = 'Idade é obrigatória.';
-            return false;
-        }
-        const idadeNum = parseInt(idade);
-        if (isNaN(idadeNum) || idadeNum <= 0 || idadeNum > 125) {
-            idadeError.textContent = 'Idade deve ser um número entre 1 e 125.';
-            return false;
-        }
-        idadeError.textContent = '';
-        return true;
-    }
+{% block content %}
+    <div class="container mx-auto bg-white rounded-lg shadow-md p-8">
+        <h1 class="text-2xl font-semibold text-green-600 mb-6 text-center">Cadastro de Doador</h1>
 
-    function validarSexo() {
-        const sexo = sexoInput.value.trim();
-        if (!sexo) {
-            sexoError.textContent = 'Sexo é obrigatório.';
-            return false;
-        }
-        if (sexo !== 'M' && sexo !== 'F') {
-            sexoError.textContent = 'Sexo deve ser "M" ou "F".';
-            return false;
-        }
-        sexoError.textContent = '';
-        return true;
-    }
+        {# Exibição de mensagens do Django (sucesso/erro da view) #}
+        {% if messages %}
+            <ul class="messages mb-4">
+                {% for message in messages %}
+                    <li class="{{ message.tags }} p-2 mb-2 rounded-md {% if 'success' in message.tags %}bg-green-100 text-green-800{% elif 'error' in message.tags %}bg-red-100 text-red-800{% endif %}">
+                        {{ message }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
 
-    function validarDataNascimento() {
-        const dataNascimento = dataNascimentoInput.value.trim();
-        if (!dataNascimento) {
-            dataNascimentoError.textContent = 'Data de nascimento é obrigatória.';
-            return false;
-        }
-        const regex = /^\d{2}\/\d{2}\/\d{4}$/;
-        if (!regex.test(dataNascimento)) {
-            dataNascimentoError.textContent = 'Data de nascimento deve estar no formato DD/MM/AAAA.';
-            return false;
-        }
-        const partes = dataNascimento.split('/');
-        const dia = parseInt(partes[0], 10);
-        const mes = parseInt(partes[1], 10);
-        const ano = parseInt(partes[2], 10);
+        <form id="cadastroForm" method="post" action="{% url 'cadastrar_doador' %}" class="space-y-4">
+            {% csrf_token %} {# Token de segurança do Django #}
 
-        if (mes < 1 || mes > 12 || dia < 1 || dia > 31) {
-            dataNascimentoError.textContent = 'Data de nascimento inválida.';
-            return false;
+            {# Erros de formulário não relacionados a campos específicos #}
+            {% if form.non_field_errors %}
+                <ul class="errorlist">
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {# CPF #}
+            <div>
+                <label for="{{ form.cpf.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.cpf.label }}:</label>
+                <input type="text" id="{{ form.cpf.id_for_label }}" name="{{ form.cpf.name }}" value="{{ form.cpf.value|default:'' }}"
+                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" maxlength="15">
+                <div id="cpf-error" class="error-message"></div>
+                {% if form.cpf.errors %}<ul class="errorlist">{{ form.cpf.errors }}</ul>{% endif %}
+            </div>
+
+            {# Nome #}
+            <div>
+                <label for="{{ form.nome.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.nome.label }}:</label>
+                <input type="text" id="{{ form.nome.id_for_label }}" name="{{ form.nome.name }}" value="{{ form.nome.value|default:'' }}"
+                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <div id="nome-error" class="error-message"></div>
+                {% if form.nome.errors %}<ul class="errorlist">{{ form.nome.errors }}</ul>{% endif %}
+            </div>
+
+            {# Tipo Sanguíneo #}
+            <div>
+                <label for="{{ form.tipo_sanguineo.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.tipo_sanguineo.label }}:</label>
+                <select id="{{ form.tipo_sanguineo.id_for_label }}" name="{{ form.tipo_sanguineo.name }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    {% for value, label in form.tipo_sanguineo.field.choices %}
+                        <option value="{{ value }}" {% if form.tipo_sanguineo.value == value %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+                <div id="tipo_sanguineo-error" class="error-message"></div>
+                {% if form.tipo_sanguineo.errors %}<ul class="errorlist">{{ form.tipo_sanguineo.errors }}</ul>{% endif %}
+            </div>
+
+            {# Data de Nascimento #}
+            <div>
+              <label for="{{ form.data_nascimento.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.data_nascimento.label }}:</label>
+              <input type="date" id="{{ form.data_nascimento.id_for_label }}" name="{{ form.data_nascimento.name }}" value="{{ form.data_nascimento.value|date:'Y-m-d'|default:'' }}"
+                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+              <div id="data_nascimento-error" class="error-message"></div>
+              {% if form.data_nascimento.errors %}<ul class="errorlist">{{ form.data_nascimento.errors }}</ul>{% endif %}
+            </div>
+
+            {# Campo idade oculto #}
+            <div style="display: none;">
+                <label for="{{ form.idade.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.idade.label }}:</label>
+                <input type="number" id="{{ form.idade.id_for_label }}" name="{{ form.idade.name }}" value="{{ form.idade.value|default:'' }}"
+                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <div id="idade-error" class="error-message"></div>
+                {% if form.idade.errors %}<ul class="errorlist">{{ form.idade.errors }}</ul>{% endif %}
+            </div>
+
+            {# Sexo #}
+            <div>
+                <label for="{{ form.sexo.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.sexo.label }}:</label>
+                <select id="{{ form.sexo.id_for_label }}" name="{{ form.sexo.name }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    {% for value, label in form.sexo.field.choices %}
+                        <option value="{{ value }}" {% if form.sexo.value == value %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+                <div id="sexo-error" class="error-message"></div>
+                {% if form.sexo.errors %}<ul class="errorlist">{{ form.sexo.errors }}</ul>{% endif %}
+            </div>
+
+            {# Profissão #}
+            <div>
+                <label for="{{ form.profissao.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.profissao.label }}:</label>
+                <select id="{{ form.profissao.id_for_label }}" name="{{ form.profissao.name }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    {% for value, label in form.profissao.field.choices %}
+                        <option value="{{ value }}" {% if form.profissao.value == value %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+                <div id="profissao-error" class="error-message"></div>
+                {% if form.profissao.errors %}<ul class="errorlist">{{ form.profissao.errors }}</ul>{% endif %}
+            </div>
+            <div id="outra_profissao_div" style="display: none;">
+                <label for="{{ form.outra_profissao.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">Outra Profissão:</label>
+                <input type="text" id="{{ form.outra_profissao.id_for_label }}" name="{{ form.outra_profissao.name }}" value="{{ form.outra_profissao.value|default:'' }}"
+                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <div id="outra_profissao-error" class="error-message"></div>
+                {% if form.outra_profissao.errors %}<ul class="errorlist">{{ form.outra_profissao.errors }}</ul>{% endif %}
+            </div>
+
+            {# Estado Natal #}
+            <div>
+                <label for="{{ form.estado_natal.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.estado_natal.label }}:</label>
+                <select id="{{ form.estado_natal.id_for_label }}" name="{{ form.estado_natal.name }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    {% for value, label in form.estado_natal.field.choices %}
+                        <option value="{{ value }}" {% if form.estado_natal.value == value %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+                <div id="estado_natal-error" class="error-message"></div>
+                {% if form.estado_natal.errors %}<ul class="errorlist">{{ form.estado_natal.errors }}</ul>{% endif %}
+            </div>
+
+            {# Cidade Natal #}
+            <div>
+                <label for="{{ form.cidade_natal.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.cidade_natal.label }}:</label>
+                <select id="{{ form.cidade_natal.id_for_label }}" name="{{ form.cidade_natal.name }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" disabled>
+                    <option value="">Selecione a Cidade</option>
+                </select>
+                <div id="cidade_natal-error" class="error-message"></div>
+                {% if form.cidade_natal.errors %}<ul class="errorlist">{{ form.cidade_natal.errors }}</ul>{% endif %}
+            </div>
+
+            {# Estado de Residência #}
+            <div>
+                <label for="{{ form.estado_residencia.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.estado_residencia.label }}:</label>
+                <select id="{{ form.estado_residencia.id_for_label }}" name="{{ form.estado_residencia.name }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    {% for value, label in form.estado_residencia.field.choices %}
+                        <option value="{{ value }}" {% if form.estado_residencia.value == value %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+                <div id="estado_residencia-error" class="error-message"></div>
+                {% if form.estado_residencia.errors %}<ul class="errorlist">{{ form.estado_residencia.errors }}</ul>{% endif %}
+            </div>
+
+            {# Cidade de Residência #}
+            <div>
+                <label for="{{ form.cidade_residencia.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.cidade_residencia.label }}:</label>
+                <select id="{{ form.cidade_residencia.id_for_label }}" name="{{ form.cidade_residencia.name }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" disabled>
+                    <option value="">Selecione a Cidade</option>
+                </select>
+                <div id="cidade_residencia-error" class="error-message"></div>
+                {% if form.cidade_residencia.errors %}<ul class="errorlist">{{ form.cidade_residencia.errors }}</ul>{% endif %}
+            </div>
+
+            {# Estado Civil #}
+            <div>
+                <label for="{{ form.estado_civil.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.estado_civil.label }}:</label>
+                <select id="{{ form.estado_civil.id_for_label }}" name="{{ form.estado_civil.name }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    {% for value, label in form.estado_civil.field.choices %}
+                        <option value="{{ value }}" {% if form.estado_civil.value == value %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+                <div id="estado_civil-error" class="error-message"></div>
+                {% if form.estado_civil.errors %}<ul class="errorlist">{{ form.estado_civil.errors }}</ul>{% endif %}
+            </div>
+
+            {# Contato de Emergência #}
+            <div>
+                <label for="{{ form.contato_emergencia.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.contato_emergencia.label }}:</label>
+                <input type="text" id="{{ form.contato_emergencia.id_for_label }}" name="{{ form.contato_emergencia.name }}" value="{{ form.contato_emergencia.value|default:'' }}"
+                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" maxlength="15">
+                <div id="contato_emergencia-error" class="error-message"></div>
+                {% if form.contato_emergencia.errors %}<ul class="errorlist">{{ form.contato_emergencia.errors }}</ul>{% endif %}
+            </div>
+
+            <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Cadastrar Doador</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {# Dados de estados e cidades passados do Django para o JavaScript usando json_script #}
+    <script id="estados-cidades-data" type="application/json">{{ estados_cidades_json|json_script }}</script>
+    <script id="initial-estado-natal-data" type="application/json">{{ form.estado_natal.value|json_script }}</script>
+    <script id="initial-cidade-natal-data" type="application/json">{{ form.cidade_natal.value|json_script }}</script>
+    <script id="initial-estado-residencia-data" type="application/json">{{ form.estado_residencia.value|json_script }}</script>
+    <script id="initial-cidade-residencia-data" type="application/json">{{ form.cidade_residencia.value|json_script }}</script>
+    <script id="initial-profissao-data" type="application/json">{{ form.profissao.value|json_script }}</script>
+    <script id="initial-outra-profissao-data" type="application/json">{{ form.outra_profissao.value|json_script }}</script>
+
+
+    <script>
+        // Carrega os dados de estados e cidades do script tag
+        const estadosCidades = JSON.parse(document.getElementById('estados-cidades-data').textContent);
+
+        // Seletores de elementos do formulário (ajustados para IDs gerados pelo Django)
+        const form = document.getElementById('cadastroForm');
+        const nomeInput = document.getElementById('id_nome');
+        const idadeInput = document.getElementById('id_idade');
+        const sexoInput = document.getElementById('id_sexo');
+        const dataNascimentoInput = document.getElementById('id_data_nascimento');
+        const cidadeNatalSelect = document.getElementById('id_cidade_natal');
+        const estadoNatalSelect = document.getElementById('id_estado_natal');
+        const cpfInput = document.getElementById('id_cpf');
+        const profissaoSelect = document.getElementById('id_profissao');
+        const outraProfissaoDiv = document.getElementById('outra_profissao_div');
+        const outraProfissaoInput = document.getElementById('id_outra_profissao');
+        const cidadeResidenciaSelect = document.getElementById('id_cidade_residencia');
+        const estadoResidenciaSelect = document.getElementById('id_estado_residencia');
+        const estadoCivilSelect = document.getElementById('id_estado_civil');
+        const contatoEmergenciaInput = document.getElementById('id_contato_emergencia');
+        const tipoSanguineoInput = document.getElementById('id_tipo_sanguineo');
+
+        // Seletores de mensagens de erro (mantidos como IDs customizados)
+        const nomeError = document.getElementById('nome-error');
+        const idadeError = document.getElementById('idade-error');
+        const sexoError = document.getElementById('sexo-error');
+        const dataNascimentoError = document.getElementById('data_nascimento-error');
+        const cidadeNatalError = document.getElementById('cidade_natal-error');
+        const estadoNatalError = document.getElementById('estado_natal-error');
+        const cpfError = document.getElementById('cpf-error');
+        const profissaoError = document.getElementById('profissao-error');
+        const outraProfissaoError = document.getElementById('outra_profissao-error');
+        const cidadeResidenciaError = document.getElementById('cidade_residencia-error');
+        const estadoResidenciaError = document.getElementById('estado_residencia-error');
+        const estadoCivilError = document.getElementById('estado_civil-error');
+        const contatoEmergenciaError = document.getElementById('contato_emergencia-error');
+        const tipoSanguineoError = document.getElementById('tipo_sanguineo-error');
+
+
+        // Função para popular dropdown de cidades
+        function popularCidades(estado, selectElement, initialValue) {
+            selectElement.innerHTML = '<option value="">Selecione a Cidade</option>';
+            selectElement.disabled = true;
+            if (estado && estadosCidades[estado]) {
+                estadosCidades[estado].forEach(cidade => {
+                    const option = document.createElement('option');
+                    option.value = cidade;
+                    option.textContent = cidade;
+                    selectElement.appendChild(option);
+                });
+                selectElement.disabled = false;
+            }
+            if (initialValue && selectElement.querySelector(`option[value="${initialValue}"]`)) {
+                selectElement.value = initialValue;
+                selectElement.disabled = false;
+            }
         }
 
-        if ((mes === 4 || mes === 6 || mes === 9 || mes === 11) && dia > 30) {
-            dataNascimentoError.textContent = 'Data de nascimento inválida.';
-            return false;
+        // Função para preencher os valores iniciais dos selects de estado/cidade e outros campos
+        function setInitialValuesAndFormat() {
+            // Initial values passed from Django to JavaScript using json_script
+            const initialEstadoNatal = JSON.parse(document.getElementById('initial-estado-natal-data').textContent);
+            const initialCidadeNatal = JSON.parse(document.getElementById('initial-cidade-natal-data').textContent);
+            const initialEstadoResidencia = JSON.parse(document.getElementById('initial-estado-residencia-data').textContent);
+            const initialCidadeResidencia = JSON.parse(document.getElementById('initial-cidade-residencia-data').textContent);
+            const initialProfissao = JSON.parse(document.getElementById('initial-profissao-data').textContent);
+            const initialOutraProfissao = JSON.parse(document.getElementById('initial-outra-profissao-data').textContent);
+
+            // Popula as cidades se um estado já estiver selecionado (útil em caso de erro de validação do POST)
+            if (estadoNatalSelect.value) {
+                popularCidades(estadoNatalSelect.value, cidadeNatalSelect, initialCidadeNatal);
+            }
+            if (estadoResidenciaSelect.value) {
+                popularCidades(estadoResidenciaSelect.value, cidadeResidenciaSelect, initialCidadeResidencia);
+            }
+
+            // Lógica para o campo "Outra Profissão"
+            if (initialProfissao === 'Outra') {
+                outraProfissaoDiv.style.display = 'block';
+                outraProfissaoInput.setAttribute('required', 'required');
+                if (initialOutraProfissao) {
+                    outraProfissaoInput.value = initialOutraProfissao;
+                }
+            }
+
+            // Explicitamente re-aplica a formatação para valores pré-preenchidos
+            if (cpfInput.value) {
+                cpfInput.dispatchEvent(new Event('input'));
+            }
+            if (contatoEmergenciaInput.value) {
+                contatoEmergenciaInput.dispatchEvent(new Event('input'));
+            }
         }
 
-        if (mes === 2) {
-            const ehBissexto = (ano % 4 === 0 && ano % 100 !== 0) || ano % 400 === 0;
-            if (dia > 29 || (dia === 29 && !ehBissexto)) {
+        // Chama a função para preencher os valores iniciais e formatar ao carregar a página
+        document.addEventListener('DOMContentLoaded', setInitialValuesAndFormat);
+
+
+        // Event listeners para mudança de estado
+        estadoNatalSelect.addEventListener('change', () => popularCidades(estadoNatalSelect.value, cidadeNatalSelect, null));
+        estadoResidenciaSelect.addEventListener('change', () => popularCidades(estadoResidenciaSelect.value, cidadeResidenciaSelect, null));
+
+        // Lógica para o campo "Outra Profissão" (mantida para interações futuras)
+        profissaoSelect.addEventListener('change', () => {
+            if (profissaoSelect.value === 'Outra') {
+                outraProfissaoDiv.style.display = 'block';
+                outraProfissaoInput.setAttribute('required', 'required');
+            } else {
+                outraProfissaoDiv.style.display = 'none';
+                outraProfissaoInput.removeAttribute('required');
+                outraProfissaoInput.value = '';
+                profissaoError.textContent = ''; // Limpa o erro da profissão
+                outraProfissaoError.textContent = ''; // Limpa o erro da outra profissão
+            }
+        });
+
+
+        // Função para formatar CPF
+        cpfInput.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 11) {
+                value = value.substring(0, 11);
+            }
+            if (value.length > 9) {
+                value = value.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, '$1.$2.$3-$4');
+            } else if (value.length > 6) {
+                value = value.replace(/^(\d{3})(\d{3})(\d{3})$/, '$1.$2.$3');
+            } else if (value.length > 3) {
+                value = value.replace(/^(\d{3})(\d{3})$/, '$1.$2');
+            }
+            e.target.value = value;
+        });
+
+        // Função para formatar Contato de Emergência
+        contatoEmergenciaInput.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 11) {
+                value = value.substring(0, 11);
+            }
+            let formattedValue = '';
+            if (value.length > 0) {
+                formattedValue = '(' + value.substring(0, 2);
+                if (value.length > 2) {
+                    formattedValue += ') ' + value.substring(2, 7);
+                    if (value.length > 7) {
+                        formattedValue += '-' + value.substring(7, 11);
+                    }
+                }
+            }
+            e.target.value = formattedValue;
+        });
+
+
+        function validarNome() {
+            const nome = nomeInput.value.trim();
+            if (!nome) {
+                nomeError.textContent = 'Nome é obrigatório.';
+                return false;
+            }
+            nomeError.textContent = '';
+            return true;
+        }
+
+        function calcularIdade(dataNascimentoStr) {
+            const partes = dataNascimentoStr.split('-');
+            if (partes.length !== 3) return null;
+
+            const ano = parseInt(partes[0], 10);
+            const mes = parseInt(partes[1], 10);
+            const dia = parseInt(partes[2], 10);
+
+            if (isNaN(dia) || isNaN(mes) || isNaN(ano)) return null;
+
+            const dataNascimento = new Date(ano, mes - 1, dia);
+            const hoje = new Date();
+
+            let idade = hoje.getFullYear() - dataNascimento.getFullYear();
+            const mesAtual = hoje.getMonth();
+            const diaAtual = hoje.getDate();
+            const mesNascimento = dataNascimento.getMonth();
+            const diaNascimento = dataNascimento.getDate();
+
+            if (mesAtual < mesNascimento || (mesAtual === mesNascimento && diaAtual < diaNascimento)) {
+                idade--;
+            }
+            return idade;
+        }
+
+        function validarDataNascimento() {
+            const dataNascimento = dataNascimentoInput.value.trim();
+            if (!dataNascimento) {
+                dataNascimentoError.textContent = 'Data de nascimento é obrigatória.';
+                return false;
+            }
+            const partes = dataNascimento.split('-');
+            const ano = parseInt(partes[0], 10);
+            const mes = parseInt(partes[1], 10);
+            const dia = parseInt(partes[2], 10);
+
+            const dataObj = new Date(ano, mes - 1, dia);
+            if (dataObj.getFullYear() !== ano || dataObj.getMonth() !== mes - 1 || dataObj.getDate() !== dia) {
                 dataNascimentoError.textContent = 'Data de nascimento inválida.';
                 return false;
             }
-        }
-        dataNascimentoError.textContent = '';
-        return true;
-    }
 
-    function validarCidadeNatal() {
-        const cidadeNatal = cidadeNatalInput.value.trim();
-        if (!cidadeNatal) {
-            cidadeNatalError.textContent = 'Cidade natal é obrigatória.';
-            return false;
+            const idadeCalculada = calcularIdade(dataNascimento);
+            if (idadeCalculada === null || idadeCalculada < 0 || idadeCalculada > 125) {
+                dataNascimentoError.textContent = 'Idade calculada inválida. Verifique a data de nascimento.';
+                return false;
+            }
+            idadeInput.value = idadeCalculada;
+            idadeError.textContent = '';
+            dataNascimentoError.textContent = '';
+            return true;
         }
-        cidadeNatalError.textContent = '';
-        return true;
-    }
 
-    function validarEstadoNatal() {
-        const estadoNatal = estadoNatalInput.value.trim();
-        if (!estadoNatal) {
-            estadoNatalError.textContent = 'Estado natal é obrigatório.';
-            return false;
+        function validarSexo() {
+            const sexo = sexoInput.value.trim();
+            if (!sexo) {
+                sexoError.textContent = 'Sexo é obrigatório.';
+                return false;
+            }
+            if (sexo !== 'M' && sexo !== 'F') {
+                sexoError.textContent = 'Sexo deve ser "M" ou "F".';
+                return false;
+            }
+            sexoError.textContent = '';
+            return true;
         }
-        estadoNatalError.textContent = '';
-        return true;
-    }
 
-    function validarCPF() {
-        const cpf = cpfInput.value.trim();
-        if (!cpf) {
-            cpfError.textContent = 'CPF é obrigatório.';
-            return false;
+        function validarCidadeNatal() {
+            const cidadeNatal = cidadeNatalSelect.value.trim();
+            if (!cidadeNatal) {
+                cidadeNatalError.textContent = 'Cidade natal é obrigatória.';
+                return false;
+            }
+            cidadeNatalError.textContent = '';
+            return true;
         }
-        const regex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
-        if (!regex.test(cpf)) {
-            cpfError.textContent = 'CPF deve estar no formato 000.000.000-00.';
-            return false;
-        }
-        const numeros = cpf.replace(/\D/g, '');
-        if (numeros.length !== 11) {
-            cpfError.textContent = 'CPF deve ter 11 dígitos.';
-            return false;
-        }
-        if (/^(\d)\1+$/.test(numeros)) {
-            cpfError.textContent = 'CPF inválido.';
-            return false;
-        }
-        let soma = 0;
-        for (let i = 0; i < 9; i++) {
-            soma += parseInt(numeros[i]) * (10 - i);
-        }
-        let resto = soma % 11;
-        let digitoVerificador1 = resto < 2 ? 0 : 11 - resto;
-        if (digitoVerificador1 !== parseInt(numeros[9])) {
-            cpfError.textContent = 'CPF inválido.';
-            return false;
-        }
-        soma = 0;
-        for (let i = 0; i < 10; i++) {
-            soma += parseInt(numeros[i]) * (11 - i);
-        }
-        resto = soma % 11;
-        let digitoVerificador2 = resto < 2 ? 0 : 11 - resto;
-        if (digitoVerificador2 !== parseInt(numeros[10])) {
-            cpfError.textContent = 'CPF inválido.';
-            return false;
-        }
-        cpfError.textContent = '';
-        return true;
-    }
 
-    function validarProfissao() {
-        const profissao = profissaoInput.value.trim();
-        if (!profissao) {
-            profissaoError.textContent = 'Profissão é obrigatória.';
-            return false;
+        function validarEstadoNatal() {
+            const estadoNatal = estadoNatalSelect.value.trim();
+            if (!estadoNatal) {
+                estadoNatalError.textContent = 'Estado natal é obrigatório.';
+                return false;
+            }
+            estadoNatalError.textContent = '';
+            return true;
         }
-        profissaoError.textContent = '';
-        return true;
-    }
 
-    function validarCidadeResidencia() {
-    const cidadeResidencia = cidadeResidenciaInput.value.trim();
-        if (!cidadeResidencia) {
-            cidadeResidenciaError.textContent = 'Cidade de residencia é obrigatória.';
-            return false;
+        function validarCPF() {
+            const cpf = cpfInput.value.trim();
+            if (!cpf) {
+                cpfError.textContent = 'CPF é obrigatório.';
+                return false;
+            }
+            const numeros = cpf.replace(/\D/g, '');
+            if (numeros.length !== 11) {
+                cpfError.textContent = 'CPF deve ter 11 dígitos.';
+                return false;
+            }
+             if (/^(\d)\1+$/.test(numeros)) {
+                cpfError.textContent = 'CPF inválido.';
+                return false;
+            }
+            let soma = 0;
+            for (let i = 0; i < 9; i++) {
+                soma += parseInt(numeros[i]) * (10 - i);
+            }
+            let resto = soma % 11;
+            let digitoVerificador1 = resto < 2 ? 0 : 11 - resto;
+            if (digitoVerificador1 !== parseInt(numeros[9])) {
+                cpfError.textContent = 'CPF inválido.';
+                return false;
+            }
+            soma = 0;
+            for (let i = 0; i < 10; i++) {
+                soma += parseInt(numeros[i]) * (11 - i);
+            }
+            resto = soma % 11;
+            let digitoVerificador2 = resto < 2 ? 0 : 11 - resto;
+            if (digitoVerificador2 !== parseInt(numeros[10])) {
+                cpfError.textContent = 'CPF inválido.';
+                return false;
+            }
+            cpfError.textContent = '';
+            return true;
         }
-        cidadeResidenciaError.textContent = '';
-        return true;
-    }
 
-    function validarEstadoResidencia() {
-        const estadoResidencia = estadoResidenciaInput.value.trim();
-        if (!estadoResidencia) {
-            estadoResidenciaError.textContent = 'Estado de residencia é obrigatório.';
-            return false;
+        function validarProfissao() {
+            const profissao = profissaoSelect.value.trim();
+            if (!profissao) {
+                profissaoError.textContent = 'Profissão é obrigatória.';
+                return false;
+            }
+            if (profissao === 'Outra') {
+                const outraProfissao = outraProfissaoInput.value.trim();
+                if (!outraProfissao) {
+                    outraProfissaoError.textContent = 'Por favor, digite a outra profissão.';
+                    return false;
+                }
+            }
+            profissaoError.textContent = '';
+            outraProfissaoError.textContent = '';
+            return true;
         }
-        estadoResidenciaError.textContent = '';
-        return true;
-    }
 
-    function validarEstadoCivil() {
-        const estadoCivil = estadoCivilInput.value.trim();
-        if (!estadoCivil) {
-            estadoCivilError.textContent = 'Estado civil é obrigatório.';
-            return false;
+        function validarCidadeResidencia() {
+          const cidadeResidencia = cidadeResidenciaSelect.value.trim();
+            if (!cidadeResidencia) {
+                cidadeResidenciaError.textContent = 'Cidade de residência é obrigatória.';
+                return false;
+            }
+            cidadeResidenciaError.textContent = '';
+            return true;
         }
-        estadoCivilError.textContent = '';
-        return true;
-    }
 
-    function validarContatoEmergencia() {
-        const contatoEmergencia = contatoEmergenciaInput.value.trim();
-        if (!contatoEmergencia) {
-            contatoEmergenciaError.textContent = 'Contato de emergência é obrigatório.';
-            return false;
+        function validarEstadoResidencia() {
+            const estadoResidencia = estadoResidenciaSelect.value.trim();
+            if (!estadoResidencia) {
+                estadoResidenciaError.textContent = 'Estado de residência é obrigatório.';
+                return false;
+            }
+            estadoResidenciaError.textContent = '';
+            return true;
         }
-        contatoEmergenciaError.textContent = '';
-        return true;
-    }
 
-    function validarTipoSanguineo() {
-        const tipoSanguineo = tipoSanguineoInput.value.trim();
-        if (!tipoSanguineo) {
-            tipoSanguineoError.textContent = 'Tipo sanguíneo é obrigatório.';
-            return false;
+        function validarEstadoCivil() {
+            const estadoCivil = estadoCivilSelect.value.trim();
+            if (!estadoCivil) {
+                estadoCivilError.textContent = 'Estado civil é obrigatório.';
+                return false;
+            }
+            estadoCivilError.textContent = '';
+            return true;
         }
-        if (!['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'].includes(tipoSanguineo)) {
-            tipoSanguineoError.textContent = 'Tipo sanguíneo inválido.';
-            return false;
+
+        function validarContatoEmergencia() {
+            const contatoEmergencia = contatoEmergenciaInput.value.trim();
+            const numeros = contatoEmergencia.replace(/\D/g, '');
+            if (!numeros) {
+                contatoEmergenciaError.textContent = 'Contato de emergência é obrigatório.';
+                return false;
+            }
+            if (numeros.length < 10 || numeros.length > 11) {
+                contatoEmergenciaError.textContent = 'Contato de emergência deve ter 10 ou 11 dígitos.';
+                return false;
+            }
+            contatoEmergenciaError.textContent = '';
+            return true;
         }
-        tipoSanguineoError.textContent = '';
-        return true;
-    }
 
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        let isValid = true;
-
-        isValid = validarNome() && isValid;
-        isValid = validarIdade() && isValid;
-        isValid = validarSexo() && isValid;
-        isValid = validarDataNascimento() && isValid;
-        isValid = validarCidadeNatal() && isValid;
-        isValid = validarEstadoNatal() && isValid;
-        isValid = validarCPF() && isValid;
-        isValid = validarProfissao() && isValid;
-        isValid = validarCidadeResidencia() && isValid;
-        isValid = validarEstadoResidencia() && isValid;
-        isValid = validarEstadoCivil() && isValid;
-        isValid = validarContatoEmergencia() && isValid;
-        isValid = validarTipoSanguineo() && isValid;
-
-        if (isValid) {
-            // Se todos os campos estiverem válidos, envie o formulário
-            form.submit();
+        function validarTipoSanguineo() {
+            const tipoSanguineo = tipoSanguineoInput.value.trim();
+            if (!tipoSanguineo) {
+                tipoSanguineoError.textContent = 'Tipo sanguíneo é obrigatório.';
+                return false;
+            }
+            if (!['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'].includes(tipoSanguineo)) {
+                tipoSanguineoError.textContent = 'Tipo sanguíneo inválido.';
+                return false;
+            }
+            tipoSanguineoError.textContent = '';
+            return true;
         }
-    });
 
-    nomeInput.addEventListener('blur', validarNome);
-    idadeInput.addEventListener('blur', validarIdade);
-    sexoInput.addEventListener('change', validarSexo);
-    dataNascimentoInput.addEventListener('blur', validarDataNascimento);
-    cidadeNatalInput.addEventListener('blur', validarCidadeNatal);
-    estadoNatalInput.addEventListener('blur', validarEstadoNatal);
-    cpfInput.addEventListener('blur', validarCPF);
-    profissaoInput.addEventListener('blur', validarProfissao);
-    cidadeResidenciaInput.addEventListener('blur', validarCidadeResidencia);
-    estadoResidenciaInput.addEventListener('blur', validarEstadoResidencia);
-    estadoCivilInput.addEventListener('blur', validarEstadoCivil);
-    contatoEmergenciaInput.addEventListener('blur', validarContatoEmergencia);
-    tipoSanguineoInput.addEventListener('change', validarTipoSanguineo);
-</script>
+        form.addEventListener('submit', (event) => {
+            event.preventDefault(); // Impede o envio padrão do formulário
+            let isValid = true;
 
+            // Executa todas as validações de frontend
+            isValid = validarCPF() && isValid;
+            isValid = validarNome() && isValid;
+            isValid = validarTipoSanguineo() && isValid;
+            isValid = validarDataNascimento() && isValid;
+            isValid = validarSexo() && isValid;
+            isValid = validarProfissao() && isValid;
+            isValid = validarEstadoNatal() && isValid;
+            isValid = validarCidadeNatal() && isValid;
+            isValid = validarEstadoResidencia() && isValid;
+            isValid = validarCidadeResidencia() && isValid;
+            isValid = validarEstadoCivil() && isValid;
+            isValid = validarContatoEmergencia() && isValid;
 
+            if (isValid) {
+                // Se todas as validações de frontend passarem, envia o formulário
+                form.submit();
+            }
+        });
+
+        // Adiciona listeners de evento para os campos
+        cpfInput.addEventListener('blur', validarCPF);
+        nomeInput.addEventListener('blur', validarNome);
+        tipoSanguineoInput.addEventListener('change', validarTipoSanguineo);
+        dataNascimentoInput.addEventListener('change', validarDataNascimento);
+        sexoInput.addEventListener('change', validarSexo);
+        profissaoSelect.addEventListener('change', validarProfissao);
+        outraProfissaoInput.addEventListener('blur', validarProfissao);
+        estadoNatalSelect.addEventListener('change', validarEstadoNatal);
+        cidadeNatalSelect.addEventListener('change', validarCidadeNatal);
+        estadoResidenciaSelect.addEventListener('change', validarEstadoResidencia);
+        cidadeResidenciaSelect.addEventListener('change', validarCidadeResidencia);
+        estadoCivilSelect.addEventListener('change', validarEstadoCivil);
+        contatoEmergenciaInput.addEventListener('blur', validarContatoEmergencia);
+
+    </script>
 {% endblock %}

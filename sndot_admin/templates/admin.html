@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Administrador do Sistema{% endblock %}
+
+{% block content %}
+        <section class="text-center mb-12">
+            <h2 class="text-3xl font-semibold text-green-600 mb-4">Seja um Herói. Doe Vida.</h2>
+            <p class="text-lg text-gray-700">
+                Nesta aplicação é possível realizar o cadastro de doadores, receptores e acompanhar o processo de doação.
+            </p>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between">
+                <h3 class="text-2xl font-semibold text-teal-500 mb-4">Doador</h3>
+                <p class="text-gray-700 mb-6">
+                    
+                </p>
+                <div class="space-y-2">
+                    <a href="{% url 'sndot_admin:login' %}" class="block bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300 text-center">Login</a>
+                </div>
+            </div>
+        </section>
+
+
+{% endblock %}

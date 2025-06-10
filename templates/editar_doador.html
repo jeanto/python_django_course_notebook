@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Cadastro de Doador{% endblock %}
+{% block title %}Alterar Doador{% endblock %}
 
 {% block head %}
     <style>
@@ -26,7 +26,7 @@
 {% block content %}
 
     <div class="container mx-auto bg-white rounded-lg shadow-md p-8">
-        <h1 class="text-2xl font-semibold text-green-600 mb-6 text-center">Cadastro de Doador</h1>
+        <h1 class="text-2xl font-semibold text-green-600 mb-6 text-center">Alterar Doador</h1>
 
         {% if messages %}
             <ul class="messages mb-4">
@@ -37,7 +37,7 @@
             </ul>
         {% endif %}
 
-        <form method="POST" action="{% url 'cadastrar_doador' %}", class="space-y-4">
+        <form method="POST" action="{% url 'editar_doador' doador.id %}", class="space-y-4">
             {% csrf_token %}
 
             {% if form.errors %}
@@ -83,7 +83,6 @@
                 
             </select>
 
-
             {{ form.contato_emergencia.label_tag }} {{ form.contato_emergencia }}
 
             {# Intenção de Doar #}
@@ -112,7 +111,14 @@
             </div>
 
 
-            <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Cadastrar Doador</button>
+            <div class="flex justify-between items-center mt-6">
+                <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Atualizar Doador
+                </button>
+                <button type="button" id="deleteButton" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Excluir Doador
+                </button>
+            </div>        
         </form>
 
     </div>
@@ -137,6 +143,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Adicionado para depuração da data de nascimento
+    var dataNascimentoInput = document.getElementById('id_data_nascimento');
+    if (dataNascimentoInput) {
+        console.log('Valor inicial da Data de Nascimento:', dataNascimentoInput.value);
+    }
+
 });
 </script>
 
@@ -149,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var estadoNatal = document.getElementById('id_estado_natal');
     var cidadeNatal = document.getElementById('id_cidade_natal');
 
-    function updateCities(estadoSelect, cidadeSelect) {
+    function updateCities(estadoSelect, cidadeSelect, selectedCity) {
         var uf = estadoSelect.value;
         cidadeSelect.innerHTML = '<option value="">Selecione a Cidade</option>';
         if (uf && statesAndCities[uf]) {
@@ -157,26 +169,44 @@ document.addEventListener('DOMContentLoaded', function() {
                 var opt = document.createElement('option');
                 opt.value = city;
                 opt.textContent = city;
+                if (selectedCity && city === selectedCity) {
+                    opt.selected = true;
+                }
                 cidadeSelect.appendChild(opt);
             });
         }
     }
 
+    // Para cidade natal
     if (estadoNatal && cidadeNatal) {
         estadoNatal.addEventListener('change', function() {
             updateCities(estadoNatal, cidadeNatal);
         });
+        // Preenche ao carregar a página
+        updateCities(
+            estadoNatal,
+            cidadeNatal,
+            "{{ form.initial.cidade_natal|escapejs }}"
+        );
     }
 
     // Repita para cidade_residencia/estado_residencia se necessário
     var estadoResidencia = document.getElementById('id_estado_residencia');
     var cidadeResidencia = document.getElementById('id_cidade_residencia');
+
+    // Para cidade de residência
     if (estadoResidencia && cidadeResidencia) {
         estadoResidencia.addEventListener('change', function() {
             updateCities(estadoResidencia, cidadeResidencia);
         });
-    } 
-    
+        updateCities(
+            estadoResidencia,
+            cidadeResidencia,
+            "{{ form.initial.cidade_residencia|escapejs }}"
+        );
+    }
+
+
     // Novos seletores para Intenção de Doar
     const doarAgoraCheckbox = document.getElementById('id_doar_agora');
     const orgaosDesejadosDiv = document.getElementById('orgaos_desejados_div');
@@ -186,15 +216,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function toggleOrgaosDesejadosVisibility() {
         if (doarAgoraCheckbox.checked) {
             orgaosDesejadosDiv.style.display = 'block';
-            // Define 'required' apenas para o primeiro checkbox do grupo
-            if (orgaosDesejadosCheckboxes.length > 0) {
-                orgaosDesejadosCheckboxes[0].required = true;
-            }
         } else {
             orgaosDesejadosDiv.style.display = 'none';
             // Remove 'required' de todos e desmarca os checkboxes
             orgaosDesejadosCheckboxes.forEach(checkbox => {
-                checkbox.required = false;
                 checkbox.checked = false;
             });
         }

@@ -25,16 +25,17 @@
                                 <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Nome</th>
                                 <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">CPF</th>
                                 <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Idade</th>
-                                <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Sexo</th>
+                                <!-- <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Sexo</th> -->
                                 <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Data de Nascimento</th>
-                                <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Cidade Natal</th>
+                                <!-- <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Cidade Natal</th>
                                 <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Estado Natal</th>
-                                <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Profissão</th>
+                                <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Profissão</th> -->
                                 <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Cidade Residência</th>
                                 <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Estado Residência</th>
-                                <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Estado Civil</th>
+                                <!-- <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Estado Civil</th> -->
                                 <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Contato Emergência</th>
                                 <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Tipo Sanguíneo</th>
+                                <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Ações</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white">
@@ -43,16 +44,20 @@
                                     <td class="px-5 py-5 border-b border-gray-200 text-sm">{{ doador.nome }}</td>
                                     <td class="px-5 py-5 border-b border-gray-200 text-sm">{{ doador.cpf }}</td>
                                     <td class="px-5 py-5 border-b border-gray-200 text-sm">{{ doador.idade }}</td>
-                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">{{ doador.sexo }}</td>
+                                    <!-- <td class="px-5 py-5 border-b border-gray-200 text-sm">{{ doador.sexo }}</td> -->
                                     <td class="px-5 py-5 border-b border-gray-200 text-sm">{{ doador.data_nascimento|date:"d/m/Y" }}</td>
-                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">{{ doador.cidade_natal }}</td>
+                                    <!-- <td class="px-5 py-5 border-b border-gray-200 text-sm">{{ doador.cidade_natal }}</td>
                                     <td class="px-5 py-5 border-b border-gray-200 text-sm">{{ doador.estado_natal }}</td>
-                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">{{ doador.profissao }}</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">{{ doador.profissao }}</td> -->
                                     <td class="px-5 py-5 border-b border-gray-200 text-sm">{{ doador.cidade_residencia }}</td>
                                     <td class="px-5 py-5 border-b border-gray-200 text-sm">{{ doador.estado_residencia }}</td>
-                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">{{ doador.estado_civil }}</td>
+                                    <!-- <td class="px-5 py-5 border-b border-gray-200 text-sm">{{ doador.estado_civil }}</td> -->
                                     <td class="px-5 py-5 border-b border-gray-200 text-sm">{{ doador.contato_emergencia }}</td>
                                     <td class="px-5 py-5 border-b border-gray-200 text-sm">{{ doador.tipo_sanguineo }}</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                                        <a href="{% url 'editar_doador' doador.id %}" class="text-blue-500 hover:text-blue-700">Editar</a>
+                                        <a href="{% url 'deletar_doador' doador.id %}" class="text-red-500 hover:text-red-700 ml-4">Deletar</a>
+                                    </td>
                                 </tr>
                             {% endfor %}
                         </tbody>

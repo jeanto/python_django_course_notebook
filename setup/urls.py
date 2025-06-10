@@ -20,4 +20,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('sndot.urls')),
+    path('sndot-admin/', include('sndot_admin.urls', namespace='sndot_admin')),
 ]
